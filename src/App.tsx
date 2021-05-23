@@ -4,7 +4,9 @@ import "./App.css";
 
 function App(): JSX.Element {
   return (
-    <div className="App">
+    <div className="App bp3-dark">
+      <h1>React Repositories</h1>
+
       <Repositories />
     </div>
   );

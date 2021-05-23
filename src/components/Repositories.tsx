@@ -1,6 +1,6 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
-import Repository, { IRepository } from "./Repository";
+import Repository, { IRepository } from "./Repository/Repository";
 
 const REACT_REPOS = gql`
   query Repository($topic: String!) {
