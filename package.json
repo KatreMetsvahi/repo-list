@@ -18,7 +18,11 @@
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
-    "eslint-config-airbnb-typescript": "^12.3.1"
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,6 +32,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -35,7 +42,8 @@
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
       "plugin:react/recommended",
-      "airbnb-typescript"
+      "airbnb-typescript",
+      "prettier"
     ],
     "parserOptions": {
       "project": "./tsconfig.json"
