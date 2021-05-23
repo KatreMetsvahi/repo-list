@@ -1,5 +1,6 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
+import Repository, { IRepository } from "./Repository";
 
 const REACT_REPOS = gql`
   query Repository($topic: String!) {
@@ -19,14 +20,6 @@ const REACT_REPOS = gql`
   }
 `;
 
-type Repository = {
-  forkCount: number;
-  id: string;
-  name: string;
-  stargazerCount: number;
-  url: string;
-};
-
 export default function Repositories(): JSX.Element {
   const { data, error, loading } = useQuery(REACT_REPOS, {
     variables: { topic: "react" },
@@ -35,11 +28,7 @@ export default function Repositories(): JSX.Element {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  return data.search.edges.map(({ node }: { node: Repository }) => (
-    <div key={node.id}>
-      <p>
-        {node.name} - stars: {node.stargazerCount} - forks: {node.forkCount}
-      </p>
-    </div>
+  return data.search.edges.map(({ node }: { node: IRepository }) => (
+    <Repository repository={node} />
   ));
 }
